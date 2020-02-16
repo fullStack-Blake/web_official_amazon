@@ -1,0 +1,33 @@
+<div id="product">
+    <div>
+        <nav id="category-bar">
+            <ul>
+                <li>Shop By Category</li><br>
+            <li><a href='/products/shoes'>Shoes</a></li>
+            <li><a href='/products/valentines'>Valentines</a></li>
+            <li><a href='/products/electronics'>Electronics</a></li>
+            <li><a href='/products/airpodcase'>Airpod Case</a></li>
+            </ul>
+        </nav>
+    </div>    
+    <div id="product-grid">
+    {{#each products}}
+        <div id="product-grid-item">
+            <div id="product-number">#{{this.number}}</div>
+            {{#if this.best}}
+            <input type="button" value="BEST" id="best-button">
+            {{/if}}
+            <div id="product-image"><img src="{{this.image}}"></div>
+            <div id="product-title"><a href="#">{{this.title}}</a></div>
+            {{#if this.discount}}
+               <span id="product-price">CDN$</span> <span id="regular-price">{{this.price}}</span>
+               <span id="product-price">{{this.discount}}</span> 
+            {{else}}
+            <div id="product-price">CDN$ {{this.price}}</div>
+            {{/if}}
+            <div id="product-category">{{this.category}}</div>
+            
+        </div>
+    {{/each}}
+    </div>
+</div>

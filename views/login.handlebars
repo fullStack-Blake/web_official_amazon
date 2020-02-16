@@ -1,0 +1,25 @@
+<section>
+    <form action="/login" method='POST' id="login">
+        <div id="login-box">
+            <div id="login-grid">
+            <h2>Sign-In</h2> <br><br>
+            
+            <label for="email" >E-mail</label><br>
+            <input type="email" name="email" value={{email}}><br><br>
+
+            <div id="registerErrors">{{warning1}}</div> <br>
+
+            <label for="password">Password</label><br>
+            <input type="password" placeholder="  At least 6 characters" name="password"><br><br>
+
+            <div id="registerErrors">{{warning2}}</div> <br>
+
+
+            <input type="submit" value="Log-In" id="submitButton"><br><br><br>
+
+            <p>Don't have an account yet? <a href="/register">Create your Account</a></p>
+            <br><br>
+        </div>
+      </div>
+    </form>
+</section>

@@ -1,0 +1,28 @@
+<div class="promotion">
+            <div id="promotion">
+                {{#each promotions}}
+                <a href="/products"><img src="{{this.image}}" alt=""></a>
+                {{/each}}
+            </div>
+</div>
+        <div id="category-flex">
+            {{#each categories}}
+            <a href="/products/{{this.category}}">
+                <div id="flexbox-category">
+                    <div id="flexbox-category-name">{{this.name}}</div>
+                    <img src="{{this.image}}" alt="">
+                </div>
+            </a>
+            {{/each}}
+        </div>
+        <div id="bestSeller">
+            <div id="bestSeller_tag">Best Sellers in Clothing &amp; Accessories</div>
+            <div id="bestSeller_flex">
+                    {{#each bestSellers}}
+                    <a href="/products/{{this.category}}">
+                        <div id="best_product"><img src="{{this.image}}" alt=""></div>
+                    </a>
+                    {{/each}}
+            </div>
+        </div>
+
