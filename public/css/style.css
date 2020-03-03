@@ -18,12 +18,11 @@ a:active, a:hover{
     height: 15vh;
     min-height: 100px;
     align-items: center;
-    grid-template-columns: 10% 50% 40%;
+    grid-template-columns: 120px 50% 1fr;
     font-family: 'Odibee Sans', cursive;
 }
 #promotion img:hover {
-    opacity: 0.8;
-    
+    opacity: 0.8;   
 }
 #home h1 {
     margin-left: 5em;
@@ -34,6 +33,7 @@ a:active, a:hover{
     text-decoration: none;
     list-style: none;
     display: inline;
+    
 }
 #category-bar {
     margin: 20px;
@@ -41,10 +41,16 @@ a:active, a:hover{
     position: sticky;
     top: 50px;
 }
-#logo-h{
+.logo-box{
+    display: block;
     width: 100px;
     height: 80px;
     margin-left: 20px;
+}
+#logo-h{
+    width: 100px;
+    height: 80px;
+    
 }
 #promotion img {
     width: 100vw;
@@ -268,9 +274,12 @@ footer{
 
 @media (max-width: 1000px){
     #home {
-        grid-template-columns: 40% 1fr;
+        grid-template-columns: 120px 1fr;
         grid-template-rows: 1fr 1fr;
         height: 25vh;
+    }
+    #home nav{
+        padding-left: 180px;
     }
     #home h1{
         order:1;
@@ -301,6 +310,9 @@ footer{
     
 }
 @media (max-width: 724px){
+    #home nav{
+        padding-left: 20px;
+    }
     #product{
         grid-template-columns: 1fr;
         grid-gap: 0;
@@ -324,6 +336,10 @@ footer{
     }
 }
 @media (max-width: 414px){
+
+    .nav-h ul li{
+        display: block;
+    }
     #best_product img {
         width: 80vw;
     }
