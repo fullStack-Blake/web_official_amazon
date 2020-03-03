@@ -323,3 +323,27 @@ footer{
         width: 50vw;
     }
 }
+@media (max-width: 414px){
+    #best_product img {
+        width: 80vw;
+    }
+    #category-flex{
+        flex-wrap: wrap;
+        height: 160vh;
+        justify-content: center;
+        align-content: center;
+    }
+    #category-flex a {
+        width: 80vw;
+        margin: 7px;
+    }
+    #product-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #bestSeller_tag{
+        text-align: center;
+    }
+    #bestSeller_tag span {
+        display: none;
+    }
+}
