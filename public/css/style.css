@@ -5,11 +5,11 @@
     font-family: 'Arimo', 'Tahoma', 'sans-serif';
     list-style: none;
 }
-a:visited a:link{
+a:visited, a:link{
     color: grey;
 }
-body {
-    /* background-color: pink; */
+a:active, a:hover{
+    color: pink;
 }
 #home {
     box-sizing: border-box;
