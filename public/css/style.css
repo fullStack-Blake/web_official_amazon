@@ -346,4 +346,8 @@ footer{
     #bestSeller_tag span {
         display: none;
     }
+    #bestSeller_flex img {
+        width: 80vw;
+        max-height: 40vh;
+    }
 }
