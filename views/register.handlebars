@@ -2,10 +2,6 @@
     <form action="/register" method='POST' id="register">
         <div id="register-box">
 
-            {{!-- {{#each message}}
-                <div id="registerErrors">{{this}}</div> <br>
-            {{/each}} --}}
-
             <h2>Create account</h2> <br><br>
             <label for="firstName">First Name
             <div id="registerErrors">{{warning1}}</div></label><br>
@@ -28,6 +24,7 @@
             <input type="password" name="passwordAgain"><br>
             <div id="registerErrors">{{warning6}}</div><br>
             <div id="registerErrors">{{warning7}}</div><br>
+            
 
             <input type="submit" value="Create account" id="submitButton"><br><br><br>
 
