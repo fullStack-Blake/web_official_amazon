@@ -106,6 +106,10 @@ a:active, a:hover{
     justify-content: space-around;
     align-items: center;
 }
+#bestSeller_flex img{
+    max-width: 250px;
+    max-height: 250px;
+}
 #best_product {
     display: flex;
 }
