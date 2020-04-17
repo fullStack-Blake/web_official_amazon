@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../models/User");
+const userModel = require("../models/user");
 const path = require("path");
 const bcrypt = require("bcryptjs");
 const isAuthenticated = require("../middleware/auth");
