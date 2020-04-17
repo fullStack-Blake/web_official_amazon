@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const session = require("express-session");
+const path = require("path");
 
 // Use dotenv to secure important data
 require("dotenv").config({ path: "./config/keys.env" });
