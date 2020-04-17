@@ -211,4 +211,8 @@ router.get("/logout", (req, res) => {
   res.redirect("/user/login");
 });
 
+router.get("/userBoard", isAuthenticated, (req, res) => {
+  res.render("userBoard");
+});
+
 module.exports = router;

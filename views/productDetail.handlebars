@@ -1,6 +1,6 @@
 {{!-- the action will be a new cookie --}}
 
-<form method="POST" action="/list" enctype="multipart/form-data">
+<form method="POST" action="/product/addcart" enctype="multipart/form-data">
     <div id="productDetail">
         <div id="productGridLeft">
             <img src="/uploads/{{productPic}}" alt="" id="productPic">
@@ -12,10 +12,17 @@
             <h4>{{description}}</h4><br>
             <h4>{{category}}</h4><br>
             {{#if this.quantity}}
-            <div>In Stock</div>
+            <div>In Stock</div><br>
+            <h4>Available quantity: {{quantity}}</h4><br>
             {{else}}
             <div>Sold Out</div>
-            {{/if}} <br>
+            {{/if}}
+
+            <label for="quantity">Quantity</label>
+            <input type="text" name="quantity"><br><br>
+            <br>
+            <input type="hidden" name="productId" value={{_id}}><br><br>
+            <br>
             <input type="submit" value="Add to Cart" id="submitButton">
         </div>
     </div>

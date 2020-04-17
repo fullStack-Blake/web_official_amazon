@@ -1,6 +1,6 @@
 <div class="promotion">
     <div id="promotion">
-        <a href="/product"><img src="/images/first_img.png" alt=""></a>
+        <a href="/product"><img src="/images/promo_sweater.png" alt=""></a>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
     <div id="bestSeller_flex">
         {{#each bestSellers}}
         {{#if this.bestSeller}}
-        <a href="/product/{{this.category}}">
+        <a href="/product/profile/{{this.id}}">
             <div id="best_product"><img src="/uploads/{{this.productPic}}" alt=""></div>
         </a>
         {{/if}}

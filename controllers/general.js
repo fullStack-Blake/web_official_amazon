@@ -13,12 +13,12 @@ router.get("/", (req, res) => {
         if (product.bestSeller == true) {
           console.log(product.productName);
           return {
-            // id: product._id,
-            // productName: product.productName,
-            // price: product.price,
-            // description: product.description,
+            id: product._id,
+            productName: product.productName,
+            price: product.price,
+            description: product.description,
             category: product.category,
-            // quantity: product.quantity,
+            quantity: product.quantity,
             bestSeller: product.bestSeller,
             productPic: product.productPic
           };
@@ -33,28 +33,5 @@ router.get("/", (req, res) => {
     })
     .catch(err => console.log(`Error when pulling products: ${err}`));
 });
-
-// router.get("/list", isAuthenticated, (req, res) => {
-//   productModel
-//     .find()
-//     .then(products => {
-//       const filteredProduct = products.map(product => {
-//         return {
-//           id: product._id,
-//           productName: product.productName,
-//           price: product.price,
-//           description: product.description,
-//           category: product.category,
-//           quantity: product.quantity,
-//           bestSeller: product.bestSeller,
-//           productPic: product.productPic
-//         };
-//       });
-//       res.render("productBoard", {
-//         data: filteredProduct
-//       });
-//     })
-//     .catch(err => console.log(`Error when pulling products: ${err}`));
-// });
 
 module.exports = router;
