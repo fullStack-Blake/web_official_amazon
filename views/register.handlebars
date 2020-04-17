@@ -1,17 +1,17 @@
 <section>
-    <form action="/register" method='POST' id="register">
+    <form action="/user/register" method='POST' id="register" enctype="multipart/form-data">
         <div id="register-box">
 
             <h2>Create account</h2> <br><br>
             <label for="firstName">First Name
-            <div id="registerErrors">{{warning1}}</div></label><br>
+                <div id="registerErrors">{{warning1}}</div></label><br>
             <input type="text" name="firstName" value={{firstName}}><br><br>
 
             <label for="lastName">Last Name</label>
             <div id="registerErrors">{{warning2}}</div><br>
             <input type="text" name="lastName" value={{lastName}}><br><br>
 
-            <label for="email" >E-mail</label>
+            <label for="email">E-mail</label>
             <div id="registerErrors">{{warning3}}</div><br>
             <input type="email" name="email" value={{email}}><br><br>
 
@@ -24,13 +24,13 @@
             <input type="password" name="passwordAgain"><br>
             <div id="registerErrors">{{warning6}}</div><br>
             <div id="registerErrors">{{warning7}}</div><br>
-            
+
 
             <input type="submit" value="Create account" id="submitButton"><br><br><br>
 
             <p>Already have an account? <a href="/login">Sign in</a></p>
             <br><br>
         </div>
-      
+
     </form>
 </section>

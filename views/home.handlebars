@@ -1,28 +1,28 @@
 <div class="promotion">
-            <div id="promotion">
-                {{#each promotions}}
-                <a href="/products"><img src="{{this.image}}" alt=""></a>
-                {{/each}}
-            </div>
+    <div id="promotion">
+        <a href="/product"><img src="/images/first_img.png" alt=""></a>
+    </div>
 </div>
-        <div id="category-flex">
-            {{#each categories}}
-            <a href="/products/{{this.category}}">
-                <div id="flexbox-category">
-                    <div id="flexbox-category-name">{{this.name}}</div>
-                    <img src="{{this.image}}" alt="">
-                </div>
-            </a>
-            {{/each}}
-        </div>
-        <div id="bestSeller">
-            <div id="bestSeller_tag">Best Sellers<span id="none-span"> in Clothing &amp; Accessories</span></div>
-            <div id="bestSeller_flex">
-                    {{#each bestSellers}}
-                    <a href="/products/{{this.category}}">
-                        <div id="best_product"><img src="{{this.image}}" alt=""></div>
-                    </a>
-                    {{/each}}
-            </div>
-        </div>
 
+<div id="category-flex">
+    {{#each categories}}
+    <a href="/product/{{this.category}}">
+        <div id="flexbox-category">
+            <div id="flexbox-category-name">{{this.name}}</div>
+            <img src="{{this.image}}" alt="">
+        </div>
+    </a>
+    {{/each}}
+</div>
+<div id="bestSeller">
+    <div id="bestSeller_tag">Best Sellers<span id="none-span"> in Clothing &amp; Accessories</span></div>
+    <div id="bestSeller_flex">
+        {{#each bestSellers}}
+        {{#if this.bestSeller}}
+        <a href="/product/{{this.category}}">
+            <div id="best_product"><img src="/uploads/{{this.productPic}}" alt=""></div>
+        </a>
+        {{/if}}
+        {{/each}}
+    </div>
+</div>
