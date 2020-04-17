@@ -46,7 +46,7 @@ userSchema.pre("save", function(next) {
     .catch(err => console.log(`Error when salting: ${err}`));
 });
 
-const userModel = mongoose.model("User", userSchema);
+const userModel = mongoose.model("user", userSchema);
 
 // firstName
 // lastName
