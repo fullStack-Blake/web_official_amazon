@@ -13,7 +13,7 @@ const product = {
     },
     {
       name: "Valentines",
-      image: "/images/category/cate_valentines.png",
+      image: "/images/category/cate_valen.png",
       category: "valentines"
     },
     {
