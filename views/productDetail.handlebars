@@ -1,29 +1,37 @@
 {{!-- the action will be a new cookie --}}
 
-<form method="POST" action="/product/addcart" enctype="multipart/form-data">
-    <div id="productDetail">
-        <div id="productGridLeft">
-            <img src="/uploads/{{productPic}}" alt="" id="productPic">
-        </div>
-
-        <div id="productGridRight">
-            <h2>{{productName}}</h2><br>
-            <h4>Price: CDN${{price}}</h4><br>
-            <h4>{{description}}</h4><br>
-            <h4>{{category}}</h4><br>
-            {{#if this.quantity}}
-            <div>In Stock</div><br>
-            <h4>Available quantity: {{quantity}}</h4><br>
-            {{else}}
-            <div>Sold Out</div>
-            {{/if}}
-
-            <label for="quantity">Quantity</label>
-            <input type="text" name="quantity"><br><br>
-            <br>
-            <input type="hidden" name="productId" value={{_id}}><br><br>
-            <br>
-            <input type="submit" value="Add to Cart" id="submitButton">
-        </div>
+{{!-- <form method="POST" action="/product/addcart" enctype="multipart/form-data"> --}}
+<div id="productDetail">
+    <div id="productGridLeft">
+        <img src="/uploads/{{productPic}}" alt="" id="productPic">
     </div>
-</form>
+
+    <div id="productGridRight">
+        <h2>{{productName}}</h2><br>
+        <h4>Price: CDN${{price}}</h4><br>
+        <h4>Description: {{description}}</h4><br>
+        <h4>Category: {{category}}</h4><br>
+        {{#if this.quantity}}
+        <div id="instock">In Stock</div><br>
+        <h4>Available quantity: {{quantity}}</h4><br>
+        <label for="quantity">Quantity</label>
+        <select name="quantity" id="">
+            <option value="1">1</option>
+        </select>
+
+
+        <br>
+
+        {{else}}
+        <div>Sold Out</div>
+        {{/if}}
+
+
+        <input type="hidden" name="productId" value={{_id}}><br><br>
+        <br>
+        <a href="/product/addcart/{{this._id}}">
+            <input type="button" value="Add to Cart" id="submitButton">
+        </a>
+    </div>
+</div>
+{{!-- </form> --}}

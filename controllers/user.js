@@ -187,7 +187,6 @@ router.post("/login", (req, res) => {
             .then(isMatched => {
               if (isMatched) {
                 req.session.user = user;
-                // if matched-> user to profile page
                 res.redirect("/user/profile");
               } else {
                 errors.push("Sorry your Email and/or Password is incorrect");

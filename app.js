@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const session = require("express-session");
 const path = require("path");
+const MongoStore = require("connect-mongo")(session);
 
 // Use dotenv to secure important data
 require("dotenv").config({ path: "./config/keys.env" });
@@ -46,7 +47,9 @@ app.use(
   session({
     secret: `${process.env.SESSION_SECRET}`,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 }
   })
 );
 
@@ -55,6 +58,7 @@ app.use((req, res, next) => {
   // res.locals.user is a global handlebars variable.
   // This means that every handlebars files can now access that user variable
   res.locals.user = req.session.user;
+  res.locals.session = req.session;
   next();
 });
 // const generalRoutes = require("./controllers/General");

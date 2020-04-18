@@ -1,12 +1,27 @@
+<div id="product-title-board">
+    <div id="product-board-title">
+        User Dashboard
+    </div>
+
+</div>
+
+
+
 <div id="div_Board">
-    <br>
+    <div id="product-board-holder">
+        <div id="shoppingCartPhoto">
+            <a href="/product/cart">
+                <img src="/images/cart.jpeg" alt=""><br>
+                Check My Shopping Cart <span>{{session.cart.totalQty}}</span>
+            </a>
+        </div>
 
-    <h2>User Dashboard</h2><br>
+        <div id="goshoppingPhoto">
+            <a href="/product">
+                <img src="/images/shopping.jpeg" alt=""><br>
+                Lets go Shopping</a>
+        </div>
 
-    <br>
-    <div id="product-links-holder">
-        <a href="/product/cart">My Shopping Cart</a>
-        <a href="/product">Lets go Shopping</a>
     </div>
     <br>
 

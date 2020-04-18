@@ -20,7 +20,7 @@ a:hover {
   height: 15vh;
   min-height: 100px;
   align-items: center;
-  grid-template-columns: 120px 50% 1fr;
+  grid-template-columns: 120px 1fr 1fr;
   font-family: "Odibee Sans", cursive;
 }
 #promotion img {
@@ -42,6 +42,8 @@ a:hover {
   display: inline;
 }
 .nav-h {
+  margin: 0;
+  padding: 0;
   justify-self: flex-end;
   margin-right: 10vw;
 }
@@ -153,6 +155,9 @@ a:hover {
 #product-price {
   color: orange;
   /* font-weight: bold; */
+}
+#product-title {
+  font-size: 1.1em;
 }
 #product-title a:link,
 #product-title a:visited {
@@ -300,6 +305,7 @@ footer {
   height: 74vh;
 }
 #productDetail {
+  padding: 0 5vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -314,12 +320,77 @@ footer {
   justify-self: center;
 }
 
+#product-search {
+  display: grid;
+  min-height: 50px;
+}
+#search-grid {
+  justify-self: center;
+  align-self: end;
+}
+#product-title-board {
+  display: grid;
+  font-size: 1.3em;
+}
+#product-board-title {
+  justify-self: center;
+  padding-top: 2.5em;
+  min-height: 3em;
+}
+#product-board-grid,
+#product-links-holder {
+  display: flex;
+  justify-content: center;
+}
+#product-links-holder {
+  padding-left: 50em;
+}
+#flex-shopping-cart {
+  width: 85vw;
+  display: grid;
+  justify-self: center;
+  align-items: center;
+  padding-left: 6vw;
+}
+#cartContainer {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 0.5fr 0.5fr 1fr;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+}
+#cartPic {
+  width: 130px;
+  height: 130px;
+}
+.row {
+  text-align: end;
+  padding-right: 15em;
+}
+#instock {
+  color: green;
+  font-size: 1.2em;
+}
+#div_Board img {
+  width: 350px;
+  height: 450px;
+}
+#product-board-holder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  text-align: center;
+  font-size: 1.2em;
+}
+#div_Board {
+}
+
 @media (max-width: 1000px) {
   #home {
     grid-template-columns: 120px 1fr 1fr;
   }
   #home nav {
-    padding-left: 180px;
+    padding: 0;
   }
   .nav-h {
     justify-self: center;

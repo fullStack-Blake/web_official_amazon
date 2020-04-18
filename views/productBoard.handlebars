@@ -1,26 +1,16 @@
-<div id="div_Board">
-    <br>
+<div id="product-title-board">
+    <div id="product-board-title">
+        Inventory Clerk Dashboard
+    </div>
 
-    <h2>Inventory Clerk Dashboard</h2><br>
+</div>
+
+<div id="product-board-grid">
+    <br>
 
 
     <section class="tasks-container">
-
-
-        <form method="POST" action="/product/search" enctype="multipart/form-data">
-            <label>Search By</label>
-            <select name="task-search">
-                <option value="all">All Products</option>
-                <option value="Shoes">Shoes</option>
-                <option value="Valentines">Valentines</option>
-                <option value="Electronics">Electronics</option>
-                <option value="AirpodCase">Airpod Case</option>
-            </select>
-            <input type="submit" value="Search">
-        </form> <br><br>
-
         <div>
-
             <table border="1" style="text-align: center;">
                 <thead>
                     <th>Product Name</th>
@@ -73,10 +63,12 @@
         </div>
 
     </section>
-    <br>
-    <div id="product-links-holder">
-        <a href="/product/add">Add a product</a>
-    </div>
-    <br>
+
+
 
 </div>
+<br>
+<div id="product-links-holder">
+    <a href="/product/add">Add a product</a>
+</div>
+<br>

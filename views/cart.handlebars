@@ -1,20 +1,63 @@
-<h2>Shopping Cart</h2>
-{{#if carts}}
-{{#each carts}}
-
-<div id="cartContainer">
-    <div class="cartGrid"><a href="/product/profile/{{this.id}}"><img src="/uploads/{{this.productPic}}" alt=""
-                id="cartPic"></a></div>
-    <div class="cartGrid">{{this.description}}</div>
-    <div class="cartGrid">{{this.category}}</div>
-    <div class="cartGrid">CDN$ {{this.price}}</div>
+<div id="product-title-board">
+    <div id="product-board-title">
+        Shopping Cart
+    </div>
 
 </div>
 
-{{/each}}
+<div id="flex-shopping-cart">
+    {{#if products}}
+    {{#each products}}
+    <div id="cartContainer">
+        <div class="cartGrid"><a href="/product/profile/{{this.item._id}}"><img src="/uploads/{{this.item.productPic}}"
+                    alt="" id="cartPic"></a>
+        </div>
+        <div class="cartGrid">{{this.item.description}}</div>
+        <div class="cartGrid">{{this.qty}}</div>
+        <div class="cartGrid">CDN$ {{this.price}}</div>
+        <div>
+            <ul>
+                <li><a href="">Remove this</a></li>
+                <li><a href="">Remove All</a></li>
+            </ul>
+        </div>
 
-<input type="submit" value="Place your order" id="submitButton">
 
-{{/if}}
+    </div>
+    {{/each}}
 
-<h2>Your Shopping Cart is empty</h2>
+    <div class="row">
+        <div class="cartrow">
+            <strong>Total: {{totalPrice}} </strong>
+        </div>
+        <br>
+        <input type="submit" value="Place your order" id="submitButton">
+    </div>
+    <br><br>
+
+
+
+    {{else}}
+
+    <div id="div_Board">
+        <div id="product-board-holder">
+            <div id="shoppingCartPhoto">
+                <a href="/product">
+                    <img src="/images/empty.jpeg" alt=""><br>
+                    No item in Cart <span>{{session.cart.totalQty}}</span>
+                </a>
+            </div>
+
+            <div id="goshoppingPhoto">
+                <a href="/product">
+                    <img src="/images/shopping.jpeg" alt=""><br>
+                    Lets go Shopping</a>
+            </div>
+
+        </div>
+        <br>
+
+    </div>
+    {{/if}}
+
+</div>

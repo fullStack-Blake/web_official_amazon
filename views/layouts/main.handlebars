@@ -9,14 +9,14 @@
         href="https://fonts.googleapis.com/css?family=Arimo|Bangers|Bowlby+One+SC|Nova+Round|PT+Sans|Roboto+Mono|dibee+Sans&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <title>{{title}}</title>
+    <title>{{#if title}}{{title}}{{else}}Welcome to mountains{{/if}}</title>
 </head>
 
 <body>
     <header>
         <div id="home">
             <a href="/" class="logo-box"><img id="logo-h" src="/images/logo.png"></a>
-            <h1>{{heading}}</h1>
+            <h1>{{#if heading}}{{heading}}{{else}}mountains{{/if}}</h1>
 
             <nav class="nav-h">
                 <ul>

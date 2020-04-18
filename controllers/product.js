@@ -224,52 +224,30 @@ router.post("/search", (req, res) => {
   else if (searchBy == "AirpodCase") res.redirect("/product/airpodcase");
 });
 
-router.post("/addcart", isAuthenticated, (req, res) => {
-  const newCart = {
-    productId: req.body.productId,
-    quantity: req.body.quantity
-  };
-  console.log(newCart.productId, newCart.quantity);
-  const cart = new cartModel(newCart);
-  cart
-    .save()
-    .then(() => {
-      res.redirect("/product/cart");
-    })
-    .catch(err =>
-      console.log(
-        `Error occured when inserting data into the cart collection ${err}`
-      )
-    );
+router.get("/addcart/:id", isAuthenticated, (req, res) => {
+  let productId = req.params.id;
+  let cart = new cartModel(req.session.cart ? req.session.cart : {});
+
+  productModel.findById(productId, function(err, product) {
+    if (err) {
+      return res.redirect("/");
+    }
+    cart.add(product, product.id);
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect("/product");
+  });
 });
 
 router.get("/cart", isAuthenticated, (req, res) => {
-  cartModel
-    .find()
-    .then(carts => {
-      const filteredCart = carts.map(cart => {
-        productModel
-          .findOne({ _id: cart.productId })
-          .then(product => {
-            return {
-              id: product._id,
-              productName: product.productName,
-              price: product.price,
-              category: product.category,
-              bestSeller: product.bestSeller,
-              productPic: product.productPic
-            };
-          })
-          .catch(err => console.log(`Error when find product`));
-      });
-      console.log(filteredCart);
-      res.render("cart", {
-        title: "cart",
-        heading: "mountains",
-        carts: filteredCart
-      });
-    })
-    .catch(err => console.log(`Error when find cart: ${err}`));
+  if (!req.session.cart) {
+    return res.render("cart", { products: null });
+  }
+  let cart = new cartModel(req.session.cart);
+  res.render("cart", {
+    products: cart.generateArray(),
+    totalPrice: cart.totalPrice
+  });
 });
 
 router.get("/edit/:id", (req, res) => {
