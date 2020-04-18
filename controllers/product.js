@@ -278,6 +278,22 @@ router.get("/edit/:id", (req, res) => {
     .catch(err => console.log(`Error when find by id: ${err}`));
 });
 
+router.get("/reduce/:id", function(req, res, next) {
+  var productId = req.params.id;
+  var cart = new cartModel(req.session.cart ? req.session.cart : {});
+  cart.reduceByOne(productId);
+  req.session.cart = cart;
+  res.redirect("/product/cart");
+});
+
+router.get("/remove/:id", function(req, res, next) {
+  var productId = req.params.id;
+  var cart = new cartModel(req.session.cart ? req.session.cart : {});
+  cart.removeItem(productId);
+  req.session.cart = cart;
+  res.redirect("/product/cart");
+});
+
 router.get("/profile/:id", (req, res) => {
   console.log("Until Here");
   productModel.findById(req.params.id).then(product => {
