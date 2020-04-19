@@ -322,7 +322,6 @@ router.post("/place", isAuthenticated, (req, res) => {
   sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
   carts = carts.generateArray();
-  console.log(carts);
 
   let test = "";
 
@@ -338,14 +337,25 @@ router.post("/place", isAuthenticated, (req, res) => {
       "    " +
       (cart.qty * cart.item.price).toFixed(2) +
       "<br>";
-  });
+    const product = {
+      productName: cart.item.productName,
+      price: cart.item.price,
+      description: cart.item.description,
+      category: cart.item.category,
+      quantity: cart.item.quantity - cart.qty,
+      bestSeller: cart.item.bestSeller,
+      productPic: cart.item.productPic
+    };
 
-  const msg = {
-    // to: `${email}`,
-    to: `han.sangyeup@gmail.com`,
-    from: `han.sangyeup@gmail.com`,
-    subject: `Order Confirmation ${firstName}`,
-    html: `
+    productModel
+      .updateOne({ _id: cart.item._id }, product)
+      .then(() => {
+        const msg = {
+          // to: `${email}`,
+          to: `han.sangyeup@gmail.com`,
+          from: `han.sangyeup@gmail.com`,
+          subject: `Order Confirmation ${firstName}`,
+          html: `
   <h2>Thank you for Shopping with us today! ${firstName} ${lastName}. <h2><br><br>
   <h3>Your Total Price is ${total}<h3><br><br>
   List is<br><br>
@@ -353,18 +363,21 @@ router.post("/place", isAuthenticated, (req, res) => {
 
   <strong>Have a great Day!</strong><br>
   `
-  };
+        };
 
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log("Send Msg IS Fine");
-      req.session.cart = {};
-      res.redirect("/user/profile");
-    })
-    .catch(err => {
-      console.log(`Error when redirect user: ${err}`);
-    });
+        sgMail
+          .send(msg)
+          .then(() => {
+            console.log("Send Msg IS Fine");
+            req.session.cart = {};
+            res.redirect("/user/profile");
+          })
+          .catch(err => {
+            console.log(`Error when redirect user: ${err}`);
+          });
+      })
+      .catch(err => console.log(`Error when updating quantity: ${err}`));
+  });
 });
 
 router.get("/profile/:id", (req, res) => {
