@@ -113,13 +113,6 @@ router.post("/register", (req, res) => {
                   console.log("Send Msg IS Fine");
                   req.session.user = user;
                   res.redirect("/user/profile");
-                  // res.render("confirm", {
-                  //   title: "Confimation Page",
-                  //   heading: `Welcome ${firstName}`,
-                  //   firstName: req.body.firstName,
-                  //   lastName: req.body.lastName,
-                  //   email: req.body.email
-                  // });
                 })
                 .catch(err => {
                   console.log(`Error when redirect user: ${err}`);
@@ -207,7 +200,7 @@ router.get("/profile", isAuthenticated, dashBoardLoader);
 
 router.get("/logout", (req, res) => {
   req.session.destroy();
-  res.redirect("/user/login");
+  res.redirect("/");
 });
 
 router.get("/userBoard", isAuthenticated, (req, res) => {

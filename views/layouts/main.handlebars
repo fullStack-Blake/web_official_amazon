@@ -23,8 +23,15 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/product">Products</a></li>
                     {{#if user}}
-                    <li><a href="/user/logout">Log out</a></li><br><br>
-                    <li><a href="/user/profile">Welcome {{user.firstName}} {{user.lastName}}</a></li>
+                    <li><a href="/user/logout">Log out</a></li>
+                    <br><br>
+                    <li><a href="/user/profile">{{user.firstName}} {{user.lastName}}</a></li>
+                    <li>
+                        <a href="/product/cart">Shopping Cart
+                            <button type="button"
+                                id="shoppingbutton">{{#if session.cart.totalQty}}{{session.cart.totalQty}}{{/if}}</button>
+                        </a>
+                    </li>
                     {{else}}
                     <li><a href="/user/register">Register</a></li>
                     <li><a href="/user/login">Login</a></li>

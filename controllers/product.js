@@ -102,11 +102,11 @@ router.get("/electronics", (req, res) => {
           return {
             id: product._id,
             productName: product.productName,
-            price: product.price,
+            price: (product.price * 1.2).toFixed(2),
             category: product.category,
             bestSeller: product.bestSeller,
             productPic: product.productPic,
-            discount: (product.price * 0.8).toFixed(2)
+            discount: product.price
           };
       });
       res.render("product", {
@@ -176,7 +176,7 @@ router.post("/add", isAuthenticated, (req, res) => {
             )
             .then(() => {
               // Here
-              res.redirect("/product/list");
+              res.redirect("/product/add");
             })
             .catch(err => {
               console.log(`Error when storing a path: ${err}`);
@@ -239,14 +239,35 @@ router.get("/addcart/:id", isAuthenticated, (req, res) => {
   });
 });
 
+router.post("/addcart/:id", isAuthenticated, (req, res) => {
+  let productId = req.body.productId;
+  let quantity = req.body.quantity;
+
+  console.log(productId, quantity);
+
+  let cart = new cartModel(req.session.cart ? req.session.cart : {});
+
+  productModel.findById(productId, function(err, product) {
+    if (err) {
+      return res.redirect("/");
+    }
+    cart.add(product, product.id, quantity);
+    req.session.cart = cart;
+
+    console.log(req.session.cart);
+    res.redirect("/product");
+  });
+});
+
 router.get("/cart", isAuthenticated, (req, res) => {
   if (!req.session.cart) {
     return res.render("cart", { products: null });
   }
   let cart = new cartModel(req.session.cart);
+
   res.render("cart", {
     products: cart.generateArray(),
-    totalPrice: cart.totalPrice
+    totalPrice: cart.totalPrice.toFixed(2)
   });
 });
 
@@ -278,20 +299,72 @@ router.get("/edit/:id", (req, res) => {
     .catch(err => console.log(`Error when find by id: ${err}`));
 });
 
-router.get("/reduce/:id", function(req, res, next) {
-  var productId = req.params.id;
-  var cart = new cartModel(req.session.cart ? req.session.cart : {});
-  cart.reduceByOne(productId);
-  req.session.cart = cart;
-  res.redirect("/product/cart");
-});
-
 router.get("/remove/:id", function(req, res, next) {
-  var productId = req.params.id;
-  var cart = new cartModel(req.session.cart ? req.session.cart : {});
+  let productId = req.params.id;
+  let cart = new cartModel(req.session.cart ? req.session.cart : {});
+
   cart.removeItem(productId);
   req.session.cart = cart;
-  res.redirect("/product/cart");
+
+  res.render("cart", {
+    products: cart.generateArray(),
+    totalPrice: cart.totalPrice.toFixed(2)
+  });
+});
+
+router.post("/place", isAuthenticated, (req, res) => {
+  let carts = new cartModel(
+    req.session.cart ? req.session.cart : res.redirect("/")
+  );
+  const { firstName, lastName, email } = req.session.user;
+
+  const sgMail = require("@sendgrid/mail");
+  sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+  carts = carts.generateArray();
+  console.log(carts);
+
+  let test = "";
+
+  const total = req.session.cart.totalPrice.toFixed(2);
+
+  carts.map(cart => {
+    test +=
+      cart.item.productName +
+      "    " +
+      cart.item.price +
+      "    " +
+      cart.qty +
+      "    " +
+      (cart.qty * cart.item.price).toFixed(2) +
+      "<br>";
+  });
+
+  const msg = {
+    // to: `${email}`,
+    to: `han.sangyeup@gmail.com`,
+    from: `han.sangyeup@gmail.com`,
+    subject: `Order Confirmation ${firstName}`,
+    html: `
+  <h2>Thank you for Shopping with us today! ${firstName} ${lastName}. <h2><br><br>
+  <h3>Your Total Price is ${total}<h3><br><br>
+  List is<br><br>
+  ${test}<br><br>
+
+  <strong>Have a great Day!</strong><br>
+  `
+  };
+
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log("Send Msg IS Fine");
+      req.session.cart = {};
+      res.redirect("/user/profile");
+    })
+    .catch(err => {
+      console.log(`Error when redirect user: ${err}`);
+    });
 });
 
 router.get("/profile/:id", (req, res) => {

@@ -7,6 +7,17 @@
 
 <div id="flex-shopping-cart">
     {{#if products}}
+    <div id="cartContainer">
+        <div class="cartGrid">Product Image</a>
+        </div>
+        <div class="cartGrid">Description</div>
+        <div class="cartGrid">quantity</div>
+        <div class="cartGrid">Price</div>
+        <div>
+            Modify
+        </div>
+    </div>
+
     {{#each products}}
     <div id="cartContainer">
         <div class="cartGrid"><a href="/product/profile/{{this.item._id}}"><img src="/uploads/{{this.item.productPic}}"
@@ -17,8 +28,7 @@
         <div class="cartGrid">CDN$ {{this.price}}</div>
         <div>
             <ul>
-                <li><a href="/product/reduce/{{this.item._id}}">Remove this</a></li>
-                <li><a href="/product/remove/{{this.item._id}}">Remove All</a></li>
+                <li><a href="/product/remove/{{this.item._id}}">Remove Item</a></li>
             </ul>
         </div>
 
@@ -31,7 +41,9 @@
             <strong>Total: {{totalPrice}} </strong>
         </div>
         <br>
-        <input type="submit" value="Place your order" id="submitButton">
+        <form action="/product/place" method="POST" enctype="multipart/form-data">
+            <input type="submit" value="Place your order" id="submitButton">
+        </form>
     </div>
     <br><br>
 
