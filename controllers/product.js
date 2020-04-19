@@ -355,8 +355,8 @@ router.post("/place", isAuthenticated, (req, res) => {
           to: `han.sangyeup@gmail.com`,
           from: `han.sangyeup@gmail.com`,
           subject: `Order Confirmation ${firstName}`,
-          html: `
-  <h2>Thank you for Shopping with us today! ${firstName} ${lastName}. <h2><br><br>
+          html: `<br>
+  <h2>Thank you for Shopping with us today! ${firstName} ${lastName}. <h2><br>
   <h3>Your Total Price is ${total}<h3><br><br>
   List is<br><br>
   ${test}<br><br>

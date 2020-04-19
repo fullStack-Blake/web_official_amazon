@@ -198,7 +198,7 @@ router.post("/login", (req, res) => {
 
 router.get("/profile", isAuthenticated, dashBoardLoader);
 
-router.get("/logout", (req, res) => {
+router.get("/logout", isAuthenticated, (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
